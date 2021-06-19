@@ -1,9 +1,32 @@
 /* add css module styles here (optional) */
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+.stdoutLine {
+  display: block;
+}
+
+.commandInput {
+  border: none;
+  font-size: 16px;
+  outline: none;
+  margin: 0px;
+  padding: 0px;
+  border-width: 9px;
+  user-select: none;
+  width: 100%;
+}
+
+.inputLine {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.stdout {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.console {
+
 }

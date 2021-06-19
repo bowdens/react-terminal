@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-terminal'
+import { Console } from 'react-terminal'
 import 'react-terminal/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+	return (
+		<Console style={{ height: "400px", width: "500px" }} />
+	)
 }
 
 export default App
