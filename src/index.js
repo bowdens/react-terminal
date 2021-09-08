@@ -9,8 +9,7 @@ export const ConsoleContext = createContext({});
 
 const Console = ({
     programs,
-    p = "$\u00a0",
-    shellName = "tomsh",
+    prompt = "$\u00a0",
     tabComplete,
     style
 }) => {
@@ -20,7 +19,6 @@ const Console = ({
     }]);
     const [index, setIndex] = useState(0);
     const [stdout, setStdout] = useState([]);
-    const [prompt, setPrompt] = useState(p);
 
     const inputRef = useRef(null);
     const stdoutRef = useRef(null);
@@ -95,7 +93,7 @@ const Console = ({
 
     const consoleState = {
         history, index,
-        stdout, prompt, setPrompt,
+        stdout, prompt,
         setCurrentCommand, incrementIndex,
         pushCommand, appendToStdout, setStdout,
     };
