@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 export const ConsoleContext = createContext({});
 
 
-export const Console = ({
+const Console = ({
     programs,
     p = "$\u00a0",
     shellName = "tomsh",
@@ -130,3 +130,5 @@ export const Console = ({
     )
 
 };
+
+export default Console;

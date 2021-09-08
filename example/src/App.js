@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Console } from 'react-terminal'
+import Console from 'react-terminal'
 import 'react-terminal/dist/index.css'
 
 const programs = {
