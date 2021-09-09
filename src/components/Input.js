@@ -101,7 +101,7 @@ export const Input = ({ tabComplete, inputRef }) => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.inputLine}>
-            <span>
+            <span className={styles.prompt}>
                 {prompt}
             </span>
             <input type="text"

@@ -1,27 +1,32 @@
 # react-terminal
 
-> A novelty terminal emulator for react
+> A novelty terminal emulator for react. You probably shouldn't use this for anything serious.
 
 [![NPM](https://img.shields.io/npm/v/react-terminal.svg)](https://www.npmjs.com/package/react-terminal) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-terminal
+npm install --save git@github.com:bowdens/react-terminal.git
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'react-terminal'
+import Console from 'react-terminal'
 import 'react-terminal/dist/index.css'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
+const Example = () => {
+  const programs = {
+    echo: ({argv: [_, ...args]}) => {
+      return args.join(" ")
+    },
   }
+  return (
+    <Console programs={programs}/>
+  )
 }
 ```
 

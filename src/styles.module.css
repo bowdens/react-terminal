@@ -27,6 +27,7 @@
   overflow-y: auto;
 }
 
-.console {
-
+.prompt {
+  display: inline-block;
+  white-space: nowrap;
 }
