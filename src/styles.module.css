@@ -13,10 +13,10 @@
   border-width: 9px;
   user-select: none;
   width: 100%;
+  background: none;
 }
 
 .inputLine {
-  border: 1px solid lightgray;
   border-radius: 4px;
   display: flex;
   overflow-x: hidden;
