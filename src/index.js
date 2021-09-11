@@ -11,14 +11,19 @@ const Console = ({
     programs,
     prompt = "$\u00a0",
     tabComplete,
-    style
+    style,
+    motd
 }) => {
     const [history, setHistory] = useState([{
         current: "",
         original: "",
     }]);
     const [index, setIndex] = useState(0);
-    const [stdout, setStdout] = useState([]);
+    const [stdout, setStdout] = useState(
+        (!!motd && typeof motd === "string") ?
+            motd.split('\n').map((s, i) => ({ value: s, key: `motd${i}` })) :
+            []
+    );
 
     const inputRef = useRef(null);
     const stdoutRef = useRef(null);
@@ -123,7 +128,7 @@ const Console = ({
                     )}
                 </div>
                 <Input
-                    style={{ backgroundColor: style.backgroundColor, color: style.color, fontFamily: style.fontFamily}}
+                    style={{ backgroundColor: style.backgroundColor, color: style.color, fontFamily: style.fontFamily }}
                     inputRef={inputRef} tabComplete={tabComplete}
                 />
             </ConsoleContext.Provider>
