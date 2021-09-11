@@ -3,7 +3,7 @@ import { ConsoleContext } from "..";
 import styles from "../styles.module.css";
 
 
-export const Input = ({ tabComplete, inputRef }) => {
+export const Input = ({ tabComplete, inputRef, style }) => {
     const [tabsInARow, setTabsInARow] = useState(0);
 
     const {
@@ -101,7 +101,7 @@ export const Input = ({ tabComplete, inputRef }) => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.inputLine}>
-            <span className={styles.prompt}>
+            <span className={styles.prompt} style={style}>
                 {prompt}
             </span>
             <input type="text"
@@ -110,6 +110,7 @@ export const Input = ({ tabComplete, inputRef }) => {
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
                 className={styles.commandInput}
+                style={style}
             />
         </form>
     );

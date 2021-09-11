@@ -11,7 +11,7 @@ const programs = {
 
 const App = () => {
 	return (
-		<Console style={{ height: "400px", width: "500px" }} programs={programs} />
+		<Console style={{ height: "400px", width: "500px", color: "limegreen", backgroundColor: "black" }} programs={programs} />
 	)
 }
 

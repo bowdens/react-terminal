@@ -45,7 +45,7 @@ const Console = ({
                 toAppendToStdout.push(`${program}: command not found`);
             } else {
                 /* TODO: figure out env?? */
-                const output = matchedProgram({argv});
+                const output = matchedProgram({ argv });
                 if (output) {
                     const lines = output.split("\n");
                     Array.prototype.push.apply(toAppendToStdout, lines);
@@ -98,7 +98,7 @@ const Console = ({
         pushCommand, appendToStdout, setStdout,
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (stdoutRef.current) {
             stdoutRef.current.scrollTop = stdoutRef.current.scrollHeight;
         }
@@ -122,7 +122,10 @@ const Console = ({
                     </span>
                     )}
                 </div>
-                <Input inputRef={inputRef} tabComplete={tabComplete} />
+                <Input
+                    style={{ backgroundColor: style.backgroundColor, color: style.color, fontFamily: style.fontFamily}}
+                    inputRef={inputRef} tabComplete={tabComplete}
+                />
             </ConsoleContext.Provider>
         </div>
     )

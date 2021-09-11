@@ -2,6 +2,7 @@
 
 .stdoutLine {
   display: block;
+  font-family: monospace;
 }
 
 .commandInput {
@@ -14,12 +15,13 @@
   user-select: none;
   width: 100%;
   background: none;
+  font-family: monospace;
 }
 
 .inputLine {
-  border-radius: 4px;
   display: flex;
   overflow-x: hidden;
+  font-family: monospace;
 }
 
 .stdout {
