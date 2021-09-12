@@ -1,5 +1,5 @@
 {
-  "name": "react-terminal",
+  "name": "@bowdens/react-terminal",
   "version": "1.0.0",
   "description": "A novelty terminal emulator for react",
   "author": "bowdens",

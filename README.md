@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save git@github.com:bowdens/react-terminal.git
+npm install --save @bowdens/react-terminal
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save git@github.com:bowdens/react-terminal.git
 ```jsx
 import React from 'react'
 
-import Console from 'react-terminal'
-import 'react-terminal/dist/index.css'
+import Console from '@bowdens/react-terminal'
+import '@bowdens/react-terminal/dist/index.css'
 
 const Example = () => {
   const programs = {
