@@ -79,18 +79,19 @@ export const Input = ({ tabComplete, inputRef, style }) => {
                     e.preventDefault();
                     break;
                 case "Tab":
-                    setTabsInARow(tabsInARow + 1);
-                    const newValue = tabComplete instanceof Function ?
-                        tabComplete(
-                            inputRef.current.value,
-                            tabsInARow
-                        )
-                        :
-                        undefined;
-                    if (newValue instanceof String && newValue !== inputValue) {
+                    // get the new value and updatedTabsInARow from the tab complete function provided
+                    const newValue = tabComplete instanceof Function 
+                        ? tabComplete(inputRef.current.value, tabsInARow)
+                        : undefined;
+                    if (typeof newValue === 'string' && newValue !== inputValue) {
                         setCurrentCommand(newValue);
+                        setTabsInARow(0);
+                    } else {
+                        setTabsInARow(tabsInARow+1);
                     }
                     wasTab = true;
+                    e.preventDefault();
+                    break;
             }
         }
 

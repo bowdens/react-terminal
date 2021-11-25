@@ -25,11 +25,17 @@
 }
 
 .stdout {
-  height: 100%;
+  font-size: 16px;
   overflow-y: auto;
 }
 
 .prompt {
+  font-size: 16px;
   display: inline-block;
   white-space: nowrap;
+}
+
+.console {
+  max-height: 100%;
+  overflow: auto;
 }

@@ -37,6 +37,8 @@ programs | An object with all of the programs. It should be in the form programN
 prompt | The prompt to show before the user's text. Its best to use the \u00a0 at the end of the prompt so the rendered HTML won't compress the whitespace. Default is "$\u00a0" | ```">\u00a0"``` 
 style | Any styling for the component. Colours will be passed down to the input elements | ```{ color: "limegreen", backgroundColor: "black" } ```
 motd | A string that will be displayed when the component is first rendered. | ```"Welcome to the terminal!"```
+tabComplete | A callback that is fired whenever the tab key is pressed while the console is focussed. It is passed the current value and the number of tab keys pressed in a row without the value changing. It expects a value to be returned, either the existing value if no change is to be made, or a new value which will update the current value in the console input. If it is not provided the default is used, which attempts to match the input value with the programs by prefix. | ```(value, ntabs)=>{...}```
+ref | A ref that provides the following properties: pushCommand which accepts a single argument (a command) that executes that command, and appendToStdout which accepts a single argument, either a string or an array of strings, which are appended to stdout. This allows the console to be used programatically without direct user input.
 
 Check out example/src/App.js for a more complete example with a working echo program.
 
