@@ -8,7 +8,9 @@ const programs = {
 		return args.join(" ")
 	},
 	echolocation: () => "ping",
-	emu: () => "i'm an emu",
+	emu: () => "The Emu is a species of bird native to Australia",
+	apple: () => "``Owch'' - Newton",
+	aardvark: () => "It's really high in the alphabet."
 }
 
 const App = () => {
