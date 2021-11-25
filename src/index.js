@@ -135,7 +135,7 @@ const Console = React.forwardRef(({
         // given the current value, if the number of tabs pressed is more than 1, 
         // try to match the current value with any of the provided programs or
         // tabComplete if provided (and is an array).
-        if (ntabs === 0) return _value;
+        if (ntabs === 0 || _value === "") return _value;
         const value = _value.split(/\s+/).slice(-1)[0];
         const indexOfLastWhitespace = _value.search(/\s[^\s]*/);
         const matches = (
@@ -153,7 +153,7 @@ const Console = React.forwardRef(({
                     return `${_value.slice(0,indexOfLastWhitespace+1)}${match}`;
                 }
             }
-            appendToStdout(matches.join(" "))
+            appendToStdout(matches.sort().join(" "))
             return _value;
         }
     }
