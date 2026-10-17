@@ -16,6 +16,7 @@ export function Console({
   prompt = '$\u00a0',
   tabComplete,
   motd,
+  onExit,
   style,
   className,
   ref
@@ -82,6 +83,11 @@ export function Console({
     return result.value
   }
 
+  const interrupt = (value: string) => {
+    appendToStdout(`${prompt}${value}^C`)
+    dispatch({ type: 'interrupt' })
+  }
+
   // keep the newest output in view
   useEffect(() => {
     const el = containerRef.current
@@ -112,10 +118,14 @@ export function Console({
         prompt={prompt}
         value={state.history[state.index]?.current ?? ''}
         inputRef={inputRef}
+        history={state.history.slice(0, -1).map((entry) => entry.original)}
         onChange={(value) => dispatch({ type: 'edit', value })}
         onSubmit={() => void pushCommand()}
         onMove={(by) => dispatch({ type: 'move', by })}
+        onJump={(to) => dispatch({ type: 'jump', to })}
+        onInterrupt={interrupt}
         onClearScreen={() => dispatch({ type: 'clear' })}
+        onExit={onExit}
         onTab={handleTab}
       />
     </div>

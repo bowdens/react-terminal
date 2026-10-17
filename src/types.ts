@@ -41,6 +41,11 @@ export interface ConsoleProps {
   tabComplete?: TabComplete
   /** Shown on first render. Split on `\n`. */
   motd?: string
+  /**
+   * Called on Ctrl-D with an empty line, like a shell's EOF. Ctrl-D does
+   * nothing on an empty line if this isn't provided.
+   */
+  onExit?: () => void
   style?: CSSProperties
   className?: string
   ref?: Ref<ConsoleHandle>

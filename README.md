@@ -33,6 +33,7 @@ export const Example = () => (
 | ------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `programs`    | `Record<string, Program>`              | Maps a program name to a function. It receives `{ argv }` (the name followed by its arguments) and returns a string for stdout, split on `\n`. It may return nothing or a promise. There is no stderr.           |
 | `prompt`      | `string`                               | Shown before the input. Defaults to `"$ "`. End with a non-breaking space (` `) so the HTML doesn't collapse it.                                                                                                 |
+| `onExit`      | `() => void`                           | Called on Ctrl-D with an empty line.                                                                                                                                                                             |
 | `motd`        | `string`                               | Shown when the console first renders.                                                                                                                                                                            |
 | `tabComplete` | `string[] \| (value, ntabs) => string` | An array of words to complete against, or a callback that receives the current input and the number of tab presses in a row (0 on the first), and returns the new input. Defaults to the names in `programs`.    |
 | `style`       | `CSSProperties`                        | Applied to the container.                                                                                                                                                                                        |
@@ -57,7 +58,32 @@ The class names are stable (`rt-console`, `rt-stdout`, `rt-line`, `rt-input-line
 
 ## Keyboard
 
-Up and down: history. Tab: complete (press again to list the options). Ctrl-A / Ctrl-E: start / end of line. Ctrl-B / Ctrl-F: back / forward a character. Ctrl-C: clear the line. Ctrl-L: clear the screen.
+Readline-style shortcuts. Alt shortcuts match the physical key, so they also work with Option on macOS.
+
+| Keys                                  | Action                                                                                                                                                         |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Up / Ctrl-P, Down / Ctrl-N            | Previous / next history entry                                                                                                                                  |
+| Alt-< , Alt->                         | First history entry / back to the new line                                                                                                                     |
+| Ctrl-R                                | Reverse history search. Ctrl-R again for older matches, Ctrl-S for newer, Enter to run, Esc or Ctrl-G to cancel, any other key to accept the match for editing |
+| Tab                                   | Complete; press again to list the options                                                                                                                      |
+| Ctrl-A / Ctrl-E                       | Start / end of line                                                                                                                                            |
+| Ctrl-B / Ctrl-F                       | Back / forward a character                                                                                                                                     |
+| Alt-B / Alt-F, Ctrl-Left / Ctrl-Right | Back / forward a word                                                                                                                                          |
+| Ctrl-D                                | Delete the character under the caret; on an empty line, calls `onExit`                                                                                         |
+| Ctrl-H                                | Delete the character before the caret                                                                                                                          |
+| Ctrl-K / Ctrl-U                       | Kill to the end / start of the line                                                                                                                            |
+| Ctrl-W                                | Kill the previous whitespace-delimited word                                                                                                                    |
+| Alt-D, Ctrl-Delete                    | Kill the next word                                                                                                                                             |
+| Alt-Backspace, Ctrl-Backspace         | Kill the previous word                                                                                                                                         |
+| Ctrl-Y                                | Yank (paste) the last killed text                                                                                                                              |
+| Ctrl-T / Alt-T                        | Transpose characters / words                                                                                                                                   |
+| Alt-U / Alt-L / Alt-C                 | Upper-case / lower-case / capitalise the word                                                                                                                  |
+| Alt-.                                 | Insert the last argument of the previous command; repeat for earlier commands                                                                                  |
+| Ctrl-Z, Ctrl-_, Ctrl-/, Ctrl-X Ctrl-U | Undo                                                                                                                                                           |
+| Ctrl-C                                | Abandon the line, echoing `^C` (copies instead if text is selected)                                                                                            |
+| Ctrl-L                                | Clear the screen                                                                                                                                               |
+
+Browsers reserve Ctrl-W, Ctrl-T and Ctrl-N, so those can't be intercepted in a page; use the Alt alternatives. There is no process to interrupt, so Ctrl-C does not cancel a running async program.
 
 ## Migrating from 2.x
 

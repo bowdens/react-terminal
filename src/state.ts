@@ -19,6 +19,9 @@ export interface ConsoleState {
 export type Action =
   | { type: 'edit'; value: string }
   | { type: 'move'; by: number }
+  | { type: 'jump'; to: 'first' | 'last' }
+  /** Abandon the line: undo edits to an old entry, or empty the draft. */
+  | { type: 'interrupt' }
   | { type: 'append'; lines: string[] }
   | { type: 'clear' }
   /** Commit the entry at `index` as run. */
@@ -51,6 +54,17 @@ export function reducer(state: ConsoleState, action: Action): ConsoleState {
     case 'move': {
       const index = Math.max(0, Math.min(state.index + action.by, last))
       return { ...state, index }
+    }
+    case 'jump':
+      return { ...state, index: action.to === 'first' ? 0 : last }
+    case 'interrupt': {
+      const history = state.history.slice()
+      const entry = history[state.index]
+      if (entry && state.index !== last) {
+        history[state.index] = { ...entry, current: entry.original }
+      }
+      history[last] = emptyEntry()
+      return { ...state, history, index: last }
     }
     case 'append': {
       const added = action.lines.map((value, i) => ({

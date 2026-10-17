@@ -25,6 +25,7 @@ export default function App() {
       <Console
         ref={consoleRef}
         programs={programs}
+        onExit={() => window.alert('Ctrl-D on an empty line')}
         motd={'Welcome to the terminal\nTry the echo command!'}
         style={{
           height: 400,
