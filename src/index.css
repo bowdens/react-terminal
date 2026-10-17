@@ -1,0 +1,53 @@
+/*
+ * Theme with CSS custom properties, set on .rt-console (via className or the
+ * style prop) or on any ancestor:
+ *   --rt-bg, --rt-fg, --rt-font, --rt-font-size, --rt-padding
+ * The `style` prop's color / backgroundColor / fontFamily also still work.
+ */
+.rt-console {
+  box-sizing: border-box;
+  max-height: 100%;
+  overflow: auto;
+  padding: var(--rt-padding, 0.5rem);
+  background-color: var(--rt-bg, #0c0c0c);
+  color: var(--rt-fg, #e6e6e6);
+  font-family: var(
+    --rt-font,
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace
+  );
+  font-size: var(--rt-font-size, 16px);
+  line-height: 1.4;
+}
+
+.rt-line {
+  display: block;
+  min-height: 1lh;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rt-input-line {
+  display: flex;
+  margin: 0;
+}
+
+.rt-prompt {
+  white-space: pre;
+}
+
+.rt-input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  caret-color: currentColor;
+}
